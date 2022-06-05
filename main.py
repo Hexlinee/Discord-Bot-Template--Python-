@@ -27,7 +27,7 @@ async def on_message(message):
         channel = str(message.channel.name)
 
         if "{}.py".format(message_content.lower()) in f:
-            module = importlib.import_module(".ping", package="commands")
+            module = importlib.import_module(".{}".format(message_content.lower()), package="commands")
             await module.run(client,message)
 try:
     client.run(context[0].split("=")[1])
