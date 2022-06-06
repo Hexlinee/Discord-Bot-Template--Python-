@@ -1,8 +1,6 @@
-import os, ast, discord
+import os, ast, discord, importlib, commands
 from os import listdir, walk
 from os.path import dirname, basename, isfile, join
-import importlib
-import commands
 
 with open("config.txt") as config:
     context = config.readlines()
