@@ -1,6 +1,4 @@
-import os, ast, importlib, commands
-import discord
-from discord import *
+import os, ast, importlib, commands,discord
 from os import listdir, walk
 from os.path import dirname, basename, isfile, join
 from discord import app_commands
