@@ -29,19 +29,27 @@ for (dirpath, dirnames, filenames) in walk("commands"):
         async def self(interaction: discord.Interaction,):
             module = importlib.import_module(".{}".format(name_.split(".")[0]), package="commands")
             await module.run(client,interaction,True)
+        
+        @client.event
+        async def on_message(message):
+            if not message.author == client.user:
+                username = str(message.author).split("#")[0]
+                message_content = str(message.content)
+                channel = str(message.channel.name)
 
+                 if "{}.py".format(message_content.lower()) == name_.split(".")[0]:
+                     module = importlib.import_module(".{}".format(_name.split(".")[0]), package="commands")
+                     await module.run(client,message,False)
+            
+        
+        
+    
+
+    
+    
     break
 
-@client.event
-async def on_message(message):
-    if not message.author == client.user:
-        username = str(message.author).split("#")[0]
-        message_content = str(message.content)
-        channel = str(message.channel.name)
 
-        if "{}.py".format(message_content.lower()) in files:
-            module = importlib.import_module(".ping", package="commands")
-            await module.run(client,message,False)
 
 client.run(context[0].split("=")[1])
 
